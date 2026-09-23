@@ -3,79 +3,139 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clasps Settings</title>
+    <meta name="theme-color" content="#08090b">
+    <meta name="color-scheme" content="dark">
+    <title>Settings — Clasps</title>
     <link rel="stylesheet" href="options.css">
   </head>
   <body>
+    <a class="skip-link" href="#settings">Skip to Settings Form</a>
     <main class="shell">
-      <section class="content">
-        <header>
+      <div class="content">
+        <header class="page-header">
           <div>
-            <p class="eyebrow">Preferences</p>
-            <h1>Your download setup</h1>
-            <p>Choose the command Clasps creates when you click its toolbar icon.</p>
+            <p class="eyebrow">Settings</p>
+            <h1>
+                <a href="https://github.com/sandeshx2/clasps" target="_blank" rel="noopener noreferrer" class="redirect-btn">Clasps</a>
+            </h1>
+            <p class="lede">Choose the command exention creates when you click its toolbar icon.</p>
           </div>
+          <p id="dirtyBadge" class="dirty-badge" aria-live="polite" hidden>Unsaved Changes</p>
         </header>
 
-        <form id="settings">
-          <article id="download" class="card">
+        <form id="settings" novalidate>
+          <article id="download" class="card" aria-labelledby="mediaQualityTitle">
             <div class="card-heading">
-              <span class="step">01</span>
-              <div><h2>Media quality</h2><p>Video is capped at your selection; audio uses the chosen format.</p></div>
+              <div class="min-w-0">
+                <h2 id="mediaQualityTitle">Media Quality</h2>
+                <p>Video Is Capped at Your Selection; Audio Uses the Chosen Format.</p>
+              </div>
             </div>
             <div class="grid">
-              <label>Maximum video quality
-                <select id="videoQuality" name="videoQuality">
-                  <option value="2160">2160p / 4K</option>
-                  <option value="1440">1440p / 2K</option>
-                  <option value="1080">1080p / Full HD</option>
-                  <option value="720">720p / HD</option>
-                  <option value="480">480p</option>
-                </select>
-              </label>
-              <label>Preferred audio format
-                <select id="audioFormat" name="audioFormat">
-                  <option value="m4a">M4A</option>
-                  <option value="mp3">MP3</option>
-                  <option value="opus">Opus</option>
-                  <option value="flac">FLAC</option>
-                </select>
-              </label>
+              <div class="field">
+                <label id="videoQualityLabel" for="videoQualityBtn">Maximum Video Quality</label>
+                <div class="combo" data-combo="videoQuality">
+                  <input type="hidden" id="videoQuality" name="videoQuality" value="1080">
+                  <button type="button" id="videoQualityBtn" class="combo-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="videoQualityLabel videoQualityBtnLabel" aria-describedby="videoQualityHint">
+                    <span class="combo-label" id="videoQualityBtnLabel">1080p — Full HD</span>
+                    <svg class="chev" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <ul class="combo-list" role="listbox" aria-labelledby="videoQualityLabel">
+                    <li role="option" data-value="2160" aria-selected="false"><span class="opt-main">2160p</span><span class="opt-sub">4K Ultra HD</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                    <li role="option" data-value="1440" aria-selected="false"><span class="opt-main">1440p</span><span class="opt-sub">2K Quad HD</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                    <li role="option" data-value="1080" aria-selected="true"><span class="opt-main">1080p</span><span class="opt-sub">Full HD · Recommended</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                    <li role="option" data-value="720" aria-selected="false"><span class="opt-main">720p</span><span class="opt-sub">HD</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                    <li role="option" data-value="480" aria-selected="false"><span class="opt-main">480p</span><span class="opt-sub">SD · Smallest Size</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                  </ul>
+                </div>
+                <small id="videoQualityHint">Caps Video Height; Lower Saves Space.</small>
+              </div>
+              <div class="field">
+                <label id="audioFormatLabel" for="audioFormatBtn">Preferred Audio Format</label>
+                <div class="combo" data-combo="audioFormat">
+                  <input type="hidden" id="audioFormat" name="audioFormat" value="m4a">
+                  <button type="button" id="audioFormatBtn" class="combo-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="audioFormatLabel audioFormatBtnLabel" aria-describedby="audioFormatHint">
+                    <span class="combo-label" id="audioFormatBtnLabel">M4A — Best Compatibility</span>
+                    <svg class="chev" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <ul class="combo-list" role="listbox" aria-labelledby="audioFormatLabel">
+                    <li role="option" data-value="m4a" aria-selected="true"><span class="opt-main">M4A</span><span class="opt-sub">Best Compatibility</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                    <li role="option" data-value="mp3" aria-selected="false"><span class="opt-main">MP3</span><span class="opt-sub">Universal</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                    <li role="option" data-value="opus" aria-selected="false"><span class="opt-main">Opus</span><span class="opt-sub">Smallest Size</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                    <li role="option" data-value="flac" aria-selected="false"><span class="opt-main">FLAC</span><span class="opt-sub">Lossless</span><svg class="check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+                  </ul>
+                </div>
+                <small id="audioFormatHint">Used for Audio Track Selection.</small>
+              </div>
             </div>
           </article>
 
-          <article class="card">
+          <article class="card" aria-labelledby="saveLocationTitle">
             <div class="card-heading">
-              <span class="step">02</span>
-              <div><h2>Save location</h2><p>Leave blank to use your operating system’s Downloads folder.</p></div>
+              <div class="min-w-0">
+                <h2 id="saveLocationTitle">Save Location</h2>
+                <p>Leave Blank to Use Your Operating System&rsquo;s Downloads Folder.</p>
+              </div>
             </div>
-            <label>Download folder
-              <input id="downloadPath" name="downloadPath" type="text" placeholder="Default: ~/Downloads or %USERPROFILE%\\Downloads">
-              <small>Enter a terminal path, for example <code>~/Videos</code> or <code>D:\Media</code>.</small>
-            </label>
+            <div class="field">
+              <label for="downloadPath">Download Folder</label>
+              <input id="downloadPath" name="downloadPath" type="text" inputmode="text"
+                autocomplete="off" spellcheck="false" placeholder="~/Videos…"
+                aria-describedby="downloadPathHint downloadPathError">
+              <small id="downloadPathHint">Enter a folder path, for example <code translate="no">~/Videos</code> or <code translate="no">D:\Media</code>.</small>
+              <p id="downloadPathError" class="error" hidden></p>
+            </div>
           </article>
 
-          <article class="card">
+          <article class="card" aria-labelledby="fileNamingTitle">
             <div class="card-heading">
-              <span class="step">03</span>
-              <div><h2>File naming</h2><p>Uses yt-dlp output-template fields.</p></div>
+              <div class="min-w-0">
+                <h2 id="fileNamingTitle">File Naming</h2>
+                <p>Uses <span translate="no">yt-dlp</span> Output-Template Fields.</p>
+              </div>
             </div>
-            <label>Filename template
-              <input id="filenameTemplate" name="filenameTemplate" type="text" required>
-            </label>
+            <div class="field">
+              <label for="filenameTemplate">Filename Template</label>
+              <input id="filenameTemplate" name="filenameTemplate" type="text" inputmode="text" required
+                autocomplete="off" spellcheck="false" placeholder="%(title)s.%(ext)s…"
+                aria-describedby="filenameTemplateHint filenameTemplateError">
+              <small id="filenameTemplateHint">Requires a Template, for Example <code translate="no">%(title)s.%(ext)s</code>.</small>
+              <p id="filenameTemplateError" class="error" hidden></p>
+            </div>
+          </article>
+
+          <article class="card preview" aria-labelledby="previewTitle" aria-live="polite">
+            <div class="card-heading">
+              <div class="min-w-0">
+                <h2 id="previewTitle">Command Preview</h2>
+                <p>Updates Live as You Edit. Copy &amp; Paste Into Your Terminal.</p>
+              </div>
+            </div>
+            <div class="preview-box"><div class="preview-bar" aria-hidden="true"><i></i><i></i><i></i><span>Terminal</span></div><code id="commandPreview" class="break-words" translate="no">Loading…</code></div>
           </article>
 
           <div class="actions">
-            <button type="button" id="reset">Restore defaults</button>
-            <button class="primary" type="submit">Save settings</button>
+            <button type="button" id="reset">Restore Defaults</button>
+            <button class="primary" type="submit" id="saveBtn">Save Settings</button>
           </div>
         </form>
 
-
-        <p class="legal">Only download media you have permission to access. Clasps creates commands; it does not download or bypass access controls.</p>
-      </section>
+        <p class="legal">Only Download Media You Have Permission to Access. Clasps Creates Commands; It Does Not Download or Bypass Access Controls.</p>
+      </div>
       <div id="status" role="status" aria-live="polite"></div>
     </main>
+
+    <div id="confirmOverlay" class="overlay" hidden>
+      <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmDesc">
+        <h2 id="confirmTitle">Restore Defaults?</h2>
+        <p id="confirmDesc">This Discards Your Unsaved Changes &amp; Resets All Fields.</p>
+        <div class="dialog-actions">
+          <button type="button" id="confirmCancel">Keep My Settings</button>
+          <button type="button" id="confirmReset" class="primary">Restore Defaults</button>
+        </div>
+      </div>
+    </div>
+
     <script src="command.js"></script>
     <script src="options.js"></script>
   </body>
