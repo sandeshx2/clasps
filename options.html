@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clasps Settings</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="content">
+        <header>
+          <div>
+            <p class="eyebrow">Preferences</p>
+            <h1>Your download setup</h1>
+            <p>Choose the command Clasps creates when you click its toolbar icon.</p>
+          </div>
+        </header>
+
+        <form id="settings">
+          <article id="download" class="card">
+            <div class="card-heading">
+              <span class="step">01</span>
+              <div><h2>Media quality</h2><p>Video is capped at your selection; audio uses the chosen format.</p></div>
+            </div>
+            <div class="grid">
+              <label>Maximum video quality
+                <select id="videoQuality" name="videoQuality">
+                  <option value="2160">2160p / 4K</option>
+                  <option value="1440">1440p / 2K</option>
+                  <option value="1080">1080p / Full HD</option>
+                  <option value="720">720p / HD</option>
+                  <option value="480">480p</option>
+                </select>
+              </label>
+              <label>Preferred audio format
+                <select id="audioFormat" name="audioFormat">
+                  <option value="m4a">M4A</option>
+                  <option value="mp3">MP3</option>
+                  <option value="opus">Opus</option>
+                  <option value="flac">FLAC</option>
+                </select>
+              </label>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-heading">
+              <span class="step">02</span>
+              <div><h2>Save location</h2><p>Leave blank to use your operating system’s Downloads folder.</p></div>
+            </div>
+            <label>Download folder
+              <input id="downloadPath" name="downloadPath" type="text" placeholder="Default: ~/Downloads or %USERPROFILE%\\Downloads">
+              <small>Enter a terminal path, for example <code>~/Videos</code> or <code>D:\Media</code>.</small>
+            </label>
+          </article>
+
+          <article class="card">
+            <div class="card-heading">
+              <span class="step">03</span>
+              <div><h2>File naming</h2><p>Uses yt-dlp output-template fields.</p></div>
+            </div>
+            <label>Filename template
+              <input id="filenameTemplate" name="filenameTemplate" type="text" required>
+            </label>
+          </article>
+
+          <div class="actions">
+            <button type="button" id="reset">Restore defaults</button>
+            <button class="primary" type="submit">Save settings</button>
+          </div>
+        </form>
+
+
+        <p class="legal">Only download media you have permission to access. Clasps creates commands; it does not download or bypass access controls.</p>
+      </section>
+      <div id="status" role="status" aria-live="polite"></div>
+    </main>
+    <script src="command.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

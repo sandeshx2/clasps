@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Clasps",
+  "version": "1",
+  "description": "Copy a ready-to-run yt-dlp or spotdl command for the current page.",
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "contextMenus",
+    "offscreen",
+    "scripting",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Copy download command",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "options_page": "options.html",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{b30782af-70c6-478c-a556-dd7899a11ba0}",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  }
+}
